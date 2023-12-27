@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class PassTestRegistrationForm(unittest.TestCase):
+class FailTestRegistrationForm(unittest.TestCase):
     def setUp(self):
         # Set the path to your webdriver (e.g., chromedriver.exe)
         self.webdriver_path = 'C:\TU\pis\chromedriver_win32\chromdriver.exe'
@@ -27,11 +27,11 @@ class PassTestRegistrationForm(unittest.TestCase):
         submit_button = self.driver.find_element(By.TAG_NAME, 'button')
 
         # Fill in the form fields
-        first_name_input.send_keys('John')
+        first_name_input.send_keys('Doe')
         time.sleep(1)
-        last_name_input.send_keys('Doe')
+        last_name_input.send_keys('dfs')
         time.sleep(1)
-        email_input.send_keys('john.doe@example.com')
+        email_input.send_keys('john.doeexample.com')
         time.sleep(1)
 
         # Click the submit button
@@ -40,12 +40,12 @@ class PassTestRegistrationForm(unittest.TestCase):
 
         # Wait for the "Thank You" container to be visible
         try:
-            thank_you_container = WebDriverWait(self.driver, 3).until(
-                EC.presence_of_element_located((By.ID, 'thankYouContainer'))
+            thank_you_container = WebDriverWait(self.driver, 1).until(
+                EC.presence_of_element_located(By.ID, 'thankYouContainer')
             )
             self.assertTrue(thank_you_container.is_displayed(), "Thank You container is visible!")
-        except Exception as e:
-            self.fail(f"Thank You container is not visible. Exception: {e}")
+        except Exception:
+            self.fail("Thank You container is not visible. Exception:")
 
 if __name__ == '__main__':
     unittest.main()

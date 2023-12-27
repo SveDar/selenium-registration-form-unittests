@@ -91,7 +91,7 @@
             var submitButton = document.getElementById('submitButton');
 
             // Enable the submit button only if all fields are filled
-            submitButton.disabled = !(firstname && lastname && email);
+            submitButton.disabled = !(firstname && lastname && email && email.includes('@'));
         }
 
         function submitForm() {
